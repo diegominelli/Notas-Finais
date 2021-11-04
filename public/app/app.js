@@ -7,6 +7,7 @@ import {
   partialize,
   pipe,
 } from './utils/operators.js';
+import { eventEmmiter } from './utils/event-emitter.js';
 
 const operations = pipe(
   partialize(takeUntil, 3),
@@ -15,7 +16,7 @@ const operations = pipe(
 
 const action = operations(() =>
   retry(3, 3000, () => timeoutPromise(200, service.sumItems('2143')))
-    .then(console.log)
+    .then((total) => EventEmmiter.emit('itensTotalizados', total))
     .catch(console.log)
 );
 
