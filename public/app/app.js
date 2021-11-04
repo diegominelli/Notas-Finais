@@ -9,13 +9,6 @@ import {
   pipe,
 } from './utils/operators.js';
 import { EventEmitter } from './utils/event-emitter.js';
-import { Maybe } from './utils/maybe.js';
-
-const value = Maybe.of(20)
-  .map((value) => value + 10)
-  .map((value) => value + 30)
-  .getOrElse(0);
-alert(value);
 
 const operations = pipe(
   partialize(takeUntil, 3),
